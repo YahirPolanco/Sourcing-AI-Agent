@@ -3,16 +3,15 @@ from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 from langchain_community.tools import DuckDuckGoSearchRun
 
-# 1. Configuración de Llaves y Modelo (Costo mínimo)
-# Reemplaza con tu llave de OpenAI. El modelo mini consumirá muy poco saldo.
+Configuración de Llaves y Modelo (Costo mínimo)
 os.environ["OPENAI_API_KEY"] = "LLAVE
 "
 llm = ChatOpenAI(model="gpt-4o-mini")
 
-# 2. Inicializamos la herramienta de búsqueda gratuita
+Inicializamos la herramienta de búsqueda gratuita
 search_tool = DuckDuckGoSearchRun()
 
-# --- PASO 1: Definición de Agentes ---
+Definición de Agentes ---
 
 scraper_agent = Agent(
     role='Scraper de Noticias de Nearshoring',
@@ -43,7 +42,7 @@ analyst_agent = Agent(
     llm=llm # Este agente no necesita internet, solo analiza lo que los otros le dan
 )
 
-# --- PASO 2: Definición de Tareas ---
+# Definición de Tareas ---
 
 task_scraping = Task(
     description="Usa la herramienta de búsqueda para encontrar noticias de este año sobre 'empresas abriendo plantas en México nearshoring'. Extrae una lista de 2 nombres de empresas.",
@@ -63,7 +62,7 @@ task_analysis = Task(
     expected_output="El borrador final de los correos electrónicos."
 )
 
-# --- PASO 3: Ejecución del Proceso ---
+# Ejecución del Proceso ---
 
 sourcing_crew = Crew(
     agents=[scraper_agent, enricher_agent, analyst_agent],
