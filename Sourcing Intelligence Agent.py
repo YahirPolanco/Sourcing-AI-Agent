@@ -11,7 +11,7 @@ llm = ChatOpenAI(model="gpt-4o-mini")
 Inicializamos la herramienta de búsqueda gratuita
 search_tool = DuckDuckGoSearchRun()
 
-Definición de Agentes ---
+# Definición de Agentes ---
 
 scraper_agent = Agent(
     role='Scraper de Noticias de Nearshoring',
